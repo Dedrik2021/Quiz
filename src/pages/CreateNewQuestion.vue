@@ -2,7 +2,14 @@
 	<section class="new-question">
 		<div class="new-question__content">
 			<span class="new-question__subtitle subtitle">Create New Question</span>
-			<form class="form" @submit.prevent="submitForm">
+			<img
+				v-if="isLoading"
+				src="../assets/images/Loader.gif"
+				alt="loader"
+				height="250"
+				width="260"
+			/>
+			<form v-else-if="!isLoading" class="form" @submit.prevent="submitForm">
 				<form-input
 					v-model="inputValueQuestion"
 					id="question"
@@ -63,8 +70,8 @@
 				</form-input>
 
 				<button class="form__btn btn" type="submit">Create Question</button>
-				<p class="form__message" v-if="addedDataMessage">Question was created!</p>
 			</form>
+			<p class="form__message" v-if="isLoading" >Question was created!</p>
 			<div class="wrapper__link">
 				<router-link class="link" to="/questions">Show All Questions</router-link>
 				<router-link class="link" to="/">Back To Quiz</router-link>
@@ -86,25 +93,20 @@ export default {
 			inputValue3: { val: '', isValid: true },
 			inputAnswer: { val: '', isValid: true },
 			formIsValid: true,
-			addedDataMessage: false,
+			isLoading: false
 		};
 	},
 
 	methods: {
 
 		async loadQuestions() {
-			// this.isLoading = true;
-
 			try {
 				await this.$store.dispatch('questions/loadQuestions');
 			} catch (error) {
 				this.error = error.message || 'Something went wrong!';
 			}
-
-			// setTimeout(() => {
-			// 	this.isLoading = false;
-			// }, 1000);
 		},
+
 
 		validateForm() {
 			this.formIsValid = true;
@@ -150,7 +152,7 @@ export default {
 		submitForm() {
 			this.validateForm();
 			if (!this.formIsValid) return;
-
+			this.isLoading = true
 			const newQuestion = {
 				id: new Date().toISOString(),
 				question: this.inputValueQuestion.val + ' ?',
@@ -161,14 +163,12 @@ export default {
 			
 			this.$store.dispatch('questions/addQuestion', newQuestion);
 			this.cleanInputs();
-			this.addedDataMessage = true;
-
 			
 			setTimeout(() => {
+				this.isLoading = false
 				this.loadQuestions()
-				this.addedDataMessage = false;
 				this.$router.replace('/questions');
-			}, 1000);
+			}, 2000);
 		}
 	},
 };
@@ -201,10 +201,7 @@ export default {
 }
 
 .form__message {
-	position: absolute;
-	bottom: 10px;
-	left: 50%;
-	transform: translateX(-50%);
+	margin-bottom: 15px;
 	color: red;
 }
 </style>

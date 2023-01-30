@@ -72,7 +72,7 @@ export default {
 			page: 1,
 			pagination_offset: 0,
 			questionsList: null,
-			lastLimit: 2,
+			items_on_page: 2
 		};
 	},
 
@@ -90,7 +90,7 @@ export default {
 	async beforeMount() {
 		const response = await fetch(`http://localhost:3001/questions`);
 		const questionsData = await response.json();
-		this.questionsList = questionsData.splice(this.pagination_offset, 2);
+		this.questionsList = questionsData.splice(this.pagination_offset, this.items_on_page);
 
 		if (!response.ok) {
 			const error = new Error(questionsData.message || 'Failed to fetch!');
@@ -124,7 +124,7 @@ export default {
 				this.$store.dispatch('questions/removeQuestion', { id, newArray });
 				this.changePage(1);
 				this.loadQuestions();
-				this.questionsList = newArray.splice(0, 2);
+				this.questionsList = newArray.splice(0, this.items_on_page);
 			}
 		},
 
@@ -136,8 +136,8 @@ export default {
 			} else {
 				this.$router.replace(`/questions?page=${page_num}`);
 			}
-			this.pagination_offset = page_num * 2 - 2;
-			this.questionsList = this.questions.splice(this.pagination_offset, 2);
+			this.pagination_offset = (page_num * this.items_on_page) - this.items_on_page;
+			this.questionsList = this.questions.splice(this.pagination_offset, this.items_on_page);
 			this.loadQuestions();
 		},
 	},
@@ -149,7 +149,7 @@ export default {
 		},
 
 		pagesCount() {
-			return Math.ceil(this.questions.length / 2);
+			return Math.ceil(this.questions.length / this.items_on_page);
 		},
 	},
 };

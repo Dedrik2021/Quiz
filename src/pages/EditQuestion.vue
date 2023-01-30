@@ -3,12 +3,12 @@
 		<div class="new-question__content">
 			<span class="new-question__subtitle subtitle">Edit Question</span>
 			<img
-			v-if="isLoading"
-			src="../assets/images/Loader.gif"
-			alt="loader"
-			height="290"
-			width="300"
-		/>
+				v-if="isLoading"
+				src="../assets/images/Loader.gif"
+				alt="loader"
+				height="290"
+				width="300"
+			/>
 			<form v-else class="form" @submit.prevent="updateQuestion">
 				<form-input
 					v-model="inputValueQuestion"
@@ -99,16 +99,16 @@ export default {
 			formIsValid: true,
 			editDataMessage: false,
 			isLoading: false,
-			selectQuestion: null
+			selectQuestion: null,
 		};
 	},
 
 	mounted() {
 		this.loadQuestions();
 	},
-	
+
 	created() {
-		this.selectQuestion = this.questions.find(question => question.id === this.id)
+		this.selectQuestion = this.questions.find((question) => question.id === this.id);
 		if (this.selectQuestion) {
 			this.inputValueQuestion = { val: this.selectQuestion.question, isValid: true };
 			this.inputValue1 = { val: this.selectQuestion.options[0], isValid: true };
@@ -182,17 +182,17 @@ export default {
 				this.$router.replace('/questions');
 			}, 0);
 			setTimeout(() => {
-				this.loadQuestions()
+				this.loadQuestions();
 			}, 300);
 		},
 	},
 
 	computed: {
 		questions() {
-			const questions = this.$store.getters['questions/questions']
+			const questions = this.$store.getters['questions/questions'];
 			return questions;
 		},
-	}
+	},
 };
 </script>
 
