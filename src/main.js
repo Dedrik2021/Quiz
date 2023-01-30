@@ -1,4 +1,14 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import Paginate from 'vuejs-paginate-next'
 
-createApp(App).mount('#app')
+import App from './App.vue'
+import router from './router'
+import store from './store/index'
+
+const app = createApp(App)
+
+app.component('paginate-component', Paginate)
+
+app.use(router)
+    .use(store)
+    .mount('#app')

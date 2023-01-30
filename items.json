@@ -1,0 +1,43 @@
+{
+  "questions": [
+    {
+      "id": "1",
+      "question": "What is Vue js ?",
+      "options": [
+        "A front-end framework",
+        "A framework for building web apps",
+        "A framework for building mobile apps"
+      ],
+      "answer": 0,
+      "selected": null
+    },
+    {
+      "id": "2",
+      "question": "What is Vuex ?",
+      "options": [
+        "Vue with an x",
+        "A cheese selection",
+        "State managment library"
+      ],
+      "answer": 2,
+      "selected": null
+    },
+    {
+      "id": "3",
+      "question": "What is Vue Router used for ?",
+      "options": [
+        "Walking in space",
+        "A routing library for Vue js",
+        "Burger sauce"
+      ],
+      "answer": 1,
+      "selected": null
+    }
+  ],
+  "totalScore": [
+    {
+      "id": 1,
+      "totalResult": 0
+    }
+  ]
+}
