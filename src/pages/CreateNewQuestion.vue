@@ -1,7 +1,7 @@
 <template>
-	<section class="new-question">
-		<div class="new-question__content">
-			<span class="new-question__subtitle subtitle">Create New Question</span>
+	<section class="question">
+		<div class="question__content">
+			<span class="question__subtitle subtitle">Create New Question</span>
 			<img
 				v-if="isLoading"
 				src="../assets/images/Loader.gif"
@@ -175,7 +175,7 @@ export default {
 </script>
 
 <style scoped>
-.new-question__content {
+.question__content {
 	border-radius: 10px;
 	background-color: rgba(0, 0, 0, 0.05);
 	box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.3);

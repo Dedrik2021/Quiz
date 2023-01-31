@@ -110,5 +110,6 @@ svg:hover {
 	color: red;
 	font-size: 12px;
     margin-bottom: 5px;
+	text-align: center;
 }
 </style>

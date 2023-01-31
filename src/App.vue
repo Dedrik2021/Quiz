@@ -119,4 +119,53 @@ button {
 	opacity: 1;
 	transform: translateY(0);
 }
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	list-style: none;
+	max-width: 510px;
+	width: 100%;
+	padding: 20px;
+}
+
+.page-item {
+	cursor: pointer;
+	border: 1px solid black;
+	text-align: center;
+	border-radius: 5px;
+	max-width: 50px;
+	font-size: 16px;
+	font-weight: 500;
+	width: 100%;
+	background-color: #fff;
+	transition: all 0.3s ease-in-out;
+}
+
+.page-item:not(:last-child) {
+	margin-right: 10px;
+}
+
+.page-item.disabled {
+	opacity: 0.5;
+}
+
+.page-item.disabled,
+.page-item.active {
+	pointer-events: none;
+	background-color: #000;
+	color: #fff;
+}
+
+.page-item:hover {
+	background-color: red;
+	color: #fff;
+	border-color: #fff;
+}
+
+.page-link {
+	display: block;
+	padding: 5px 0;
+}
 </style>

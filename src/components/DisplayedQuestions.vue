@@ -182,4 +182,8 @@ button,
 	width: 70%;
 }
 
+.quiz__btn:disabled {
+	pointer-events: none;
+}
+
 </style>

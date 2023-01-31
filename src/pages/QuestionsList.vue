@@ -9,7 +9,11 @@
 			height="505"
 			width="550"
 		/>
-		<ul class="questions__list" v-if="questions.length > 0 && !isLoading">
+		<ul
+			class="questions__list"
+			v-if="questions.length > 0 && !isLoading"
+			:style="{ marginBottom: this.questionsList.length < 2 ? '252px' : '0px' }"
+		>
 			<li class="questions__item" v-for="question in this.questionsList" :key="question.id">
 				<article class="question">
 					<div>
@@ -162,6 +166,7 @@ export default {
 	padding: 20px;
 	border-radius: 5px;
 	min-width: 650px;
+	height: 750px;
 	background-color: rgb(241, 238, 238);
 	box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.5);
 }
@@ -244,17 +249,5 @@ export default {
 
 .wrapper__link {
 	padding-top: 10px;
-}
-
-.pagination {
-	display: flex;
-	justify-content: space-between;
-	list-style: none;
-	width: 40%;
-	padding: 20px;
-}
-
-.pagi > li.page-item {
-	margin: 100px;
 }
 </style>
