@@ -52,8 +52,7 @@
 			:prev-text="'Prev'"
 			:next-text="'Next'"
 			:container-class="'pagination'"
-			page-class="page-item"
-			page-link-class="page-link"
+			:page-class="'page-item'"
 		>
 		</paginate-component>
 
@@ -72,7 +71,7 @@ export default {
 			page: 1,
 			pagination_offset: 0,
 			questionsList: null,
-			items_on_page: 2
+			items_on_page: 2,
 		};
 	},
 
@@ -136,7 +135,7 @@ export default {
 			} else {
 				this.$router.replace(`/questions?page=${page_num}`);
 			}
-			this.pagination_offset = (page_num * this.items_on_page) - this.items_on_page;
+			this.pagination_offset = page_num * this.items_on_page - this.items_on_page;
 			this.questionsList = this.questions.splice(this.pagination_offset, this.items_on_page);
 			this.loadQuestions();
 		},
@@ -249,14 +248,13 @@ export default {
 
 .pagination {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	list-style: none;
-	width: 100%;
+	width: 40%;
 	padding: 20px;
 }
 
-.page-item {
-	cursor: pointer;
-	margin-right: 10px;
+.pagi > li.page-item {
+	margin: 100px;
 }
 </style>

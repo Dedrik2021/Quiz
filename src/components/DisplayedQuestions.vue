@@ -41,7 +41,7 @@
 					:value="i"
 					:name="index"
 					@input="$emit('get-answer', $event.target.value)"
-					
+					v-model="this.getSelected"
 				/>
 				<span class="quiz__option-span">{{ option }}</span>
 			</label>
@@ -90,14 +90,14 @@ export default {
 
 	data() {
 		return {
-			toCurrentQuestion: this.selected,
+			getSelected: this.selected,
 		};
 	},
 
 	methods: {
 		getNextQuestion() {
 			this.$emit('nextQuestion')
-			this.toCurrentQuestion = null;
+			this.getSelected = null;
 		}
 	},
 };

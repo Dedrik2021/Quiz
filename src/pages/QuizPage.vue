@@ -13,6 +13,7 @@
 		:seconds="this.seconds"
 		v-on:getAnswer="this.getAnswer"
 		v-on:nextQuestion="this.nextQuestion"
+		v-model="getCurrentQuestion.selected"
 	>
 	</displayed-questions>
 
@@ -79,8 +80,6 @@ export default {
 		nextQuestion() {
 			if (this.currentQuestion < this.questions.length - 1) {
 				this.currentQuestion++;
-				this.getCurrentQuestion.selected = null;
-				this.questions[this.currentQuestion].selected = null;
 			} else {
 				this.quizComplited = true;
 				clearInterval(this.hendler);
@@ -120,7 +119,6 @@ export default {
 				id: 1,
 				totalResult: this.totalScore[0].totalResult + this.score,
 			};
-			// this.$store.dispatch('totalScore/updateScore', newResult);
 			const response = await fetch('http://localhost:3001/totalScore/1', {
 				method: 'PUT',
 				headers: {
